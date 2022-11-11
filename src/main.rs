@@ -25,6 +25,32 @@ fn main() {
 
     let args: Vec<String> = env::args().collect();
 
+    if args.len() == 3 {
+        let v: f32 = parse(args[2].as_bytes())
+            .expect(&format!("Failed to parse second argument: \"{}\"", args[2]));
+        match args[1].as_str() {
+            "p" => {
+                nums.iter().for_each(|n| println!("{}", n + v));
+            }
+            "s" => {
+                nums.iter().for_each(|n| println!("{}", n - v));
+            }
+            "m" => {
+                nums.iter().for_each(|n| println!("{}", n * v));
+            }
+            "d" => {
+                nums.iter().for_each(|n| println!("{}", n / v));
+            }
+            "pow" => {
+                nums.iter().for_each(|n| println!("{}", n.powf(v)));
+            }
+            _ => {
+                println!("Unknown operation: {}", args[1]);
+                exit(1);
+            }
+        }
+    }
+
     if args.len() == 2 {
         match args[1].as_str() {
             "sum" => {
@@ -134,8 +160,71 @@ fn main() {
                 nums.sort_by(|a, b| a.abs().partial_cmp(&b.abs()).unwrap());
                 println!("{:?}", nums);
             }
+            "exp" => {
+                nums.iter().for_each(|n| println!("{}", n.exp()));
+            }
+            "ln" => {
+                nums.iter().for_each(|n| println!("{}", n.ln()));
+            }
+            "log10" => {
+                nums.iter().for_each(|n| println!("{}", n.log10()));
+            }
+            "log2" => {
+                nums.iter().for_each(|n| println!("{}", n.log2()));
+            }
+            "sqrt" => {
+                nums.iter().for_each(|n| println!("{}", n.sqrt()));
+            }
+            "cbrt" => {
+                nums.iter().for_each(|n| println!("{}", n.cbrt()));
+            }
+            "sin" => {
+                nums.iter().for_each(|n| println!("{}", n.sin()));
+            }
+            "cos" => {
+                nums.iter().for_each(|n| println!("{}", n.cos()));
+            }
+            "tan" => {
+                nums.iter().for_each(|n| println!("{}", n.tan()));
+            }
+            "asin" => {
+                nums.iter().for_each(|n| println!("{}", n.asin()));
+            }
+            "acos" => {
+                nums.iter().for_each(|n| println!("{}", n.acos()));
+            }
+            "atan" => {
+                nums.iter().for_each(|n| println!("{}", n.atan()));
+            }
+            "sinh" => {
+                nums.iter().for_each(|n| println!("{}", n.sinh()));
+            }
+            "cosh" => {
+                nums.iter().for_each(|n| println!("{}", n.cosh()));
+            }
+            "tanh" => {
+                nums.iter().for_each(|n| println!("{}", n.tanh()));
+            }
+            "asinh" => {
+                nums.iter().for_each(|n| println!("{}", n.asinh()));
+            }
+            "acosh" => {
+                nums.iter().for_each(|n| println!("{}", n.acosh()));
+            }
+            "atanh" => {
+                nums.iter().for_each(|n| println!("{}", n.atanh()));
+            }
+            "ceil" => {
+                nums.iter().for_each(|n| println!("{}", n.ceil()));
+            }
+            "floor" => {
+                nums.iter().for_each(|n| println!("{}", n.floor()));
+            }
+            "round" => {
+                nums.iter().for_each(|n| println!("{}", n.round()));
+            }
             _ => {
-                println!("Unknown command, try one of: sum, mean, median, count, min, max, range, variance, stddev, sumsq, norm, rms, product, geomean, harmean, mode, sort, sortrev, sortabs");
+                println!("Unknown operation. Command must be one of the following: sum, mean, median, min, max, range, variance, stddev, sumsq, norm, rms, product, geomean, harmean, mode, sort, sortrev, sortabs, exp, ln, log10, log2, sqrt, cbrt, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, ceil, floor, round, p<v>, s<v>, m<v>, d<v>, pow<v>");
                 exit(1);
             }
         }
