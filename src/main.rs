@@ -135,7 +135,7 @@ fn main() {
                 println!("{:?}", nums);
             }
             _ => {
-                println!("Unknown command");
+                println!("Unknown command, try one of: sum, mean, median, count, min, max, range, variance, stddev, sumsq, norm, rms, product, geomean, harmean, mode, sort, sortrev, sortabs");
                 exit(1);
             }
         }
